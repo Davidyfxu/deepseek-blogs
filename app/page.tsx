@@ -4,7 +4,7 @@ import { supabase } from "@/lib/supabaseClient";
 async function getBlogs(): Promise<Blog[]> {
   try {
     const { data: blogs, error } = await supabase
-      .from("x-stacks-blogs")
+      .from("blogs-deepseek")
       .select("id, title, content, wordCount, keywords, created_at")
       .order("created_at", { ascending: false });
 

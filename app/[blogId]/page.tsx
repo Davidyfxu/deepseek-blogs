@@ -31,7 +31,7 @@ export async function generateMetadata({
 async function getBlogData(blogId: string): Promise<Blog | null> {
   try {
     const { data: blog, error } = await supabase
-      .from("x-stacks-blogs")
+      .from("blogs-deepseek")
       .select("*")
       .eq("id", blogId)
       .single();
