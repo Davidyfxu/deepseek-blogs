@@ -34,8 +34,6 @@ export default async function BlogList() {
       <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50">
         <div className="container mx-auto px-4 py-16 max-w-4xl">
           <h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
             className="text-4xl font-bold mb-12 text-center
                        bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"
           >
@@ -46,9 +44,6 @@ export default async function BlogList() {
             {blogs.map((blog, index) => (
               <div
                 key={blog.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
                 className="group bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg
                            hover:shadow-xl hover:-translate-y-1 transition-all
                            duration-300 overflow-hidden border border-purple-200/50"

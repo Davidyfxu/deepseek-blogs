@@ -1,6 +1,6 @@
-// app/blog/[blogId]/page.tsx
 import { supabase } from "@/lib/supabaseClient";
 import BlogDetailClient from "./components/BlogDetailClient";
+import { Metadata } from "next";
 
 interface Blog {
   id: number;
@@ -12,13 +12,14 @@ interface Blog {
   created_at: string;
 }
 
+interface PageProps {
+  params: any;
+}
 // 生成元数据
 export async function generateMetadata({
   params,
-}: {
-  params: { blogId: string };
-}) {
-  const { blogId } = await params;
+}: PageProps): Promise<Metadata> {
+  const { blogId } = params;
   const blog = await getBlogData(blogId);
 
   return {
@@ -45,12 +46,8 @@ async function getBlogData(blogId: string): Promise<Blog | null> {
 }
 
 // 页面组件
-export default async function BlogDetailPage({
-  params,
-}: {
-  params: { blogId: string };
-}) {
-  const { blogId } = await params;
+export default async function BlogDetailPage({ params }: PageProps) {
+  const { blogId } = params;
   const blog = await getBlogData(blogId);
   return <BlogDetailClient blog={blog} />;
 }
