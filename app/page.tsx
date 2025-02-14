@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
+import { unstable_noStore as noStore } from 'next/cache';
+
 // 数据获取函数
 async function getBlogs(): Promise<Blog[]> {
   try {
+    noStore()
     const { data: blogs, error } = await supabase
       .from("blogs-deepseek")
       .select("id, title, content, wordCount, keywords, created_at")

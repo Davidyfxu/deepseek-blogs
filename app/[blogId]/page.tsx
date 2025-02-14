@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabaseClient";
 import BlogDetailClient from "./components/BlogDetailClient";
 import { Metadata } from "next";
+import { unstable_noStore as noStore } from 'next/cache';
 
 interface Blog {
   id: number;
@@ -31,6 +32,7 @@ export async function generateMetadata({
 // 数据获取函数
 async function getBlogData(blogId: string): Promise<Blog | null> {
   try {
+    noStore()
     const { data: blog, error } = await supabase
       .from("blogs-deepseek")
       .select("*")
